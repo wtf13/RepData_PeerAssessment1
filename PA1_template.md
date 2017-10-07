@@ -27,7 +27,7 @@ library(ggplot2)
 ggplot(totalsteps,aes(steps))+geom_histogram(breaks=seq(0, 20000, by = 1000),fill="salmon",color="black")+ggtitle("Histogram of Total Steps Per Day")
 ```
 
-![](PA1_template_files/figure-html/mean steps-1.png)<!-- -->
+![](PA1_template_files/figure-html/meansteps-1.png)<!-- -->
 
 ```r
 meansteps<-mean(totalsteps$steps,na.rm=T)
@@ -50,7 +50,7 @@ daily<-aggregate(steps~interval,data=dat,FUN=mean,na.rm=T)
 ggplot(daily,aes(interval,steps))+geom_line()
 ```
 
-![](PA1_template_files/figure-html/daily activity-1.png)<!-- -->
+![](PA1_template_files/figure-html/dailyactivity-1.png)<!-- -->
 
 ```r
 daily[which.max(daily$steps),]$interval

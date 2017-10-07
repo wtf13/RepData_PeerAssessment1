@@ -14,7 +14,7 @@ head(dat)
 ```
 
 # What is mean total number of steps taken per day?
-```{r mean steps}
+```{r meansteps}
 totalsteps<-aggregate(steps~date,data=dat,FUN=sum,na.rm=T)
 library(ggplot2)
 ggplot(totalsteps,aes(steps))+geom_histogram(breaks=seq(0, 20000, by = 1000),fill="salmon",color="black")+ggtitle("Histogram of Total Steps Per Day")
@@ -24,7 +24,7 @@ list(meansteps=meansteps,mediansteps=mediansteps)
 ```
 
 # What is the average daily activity pattern?
-```{r daily activity}
+```{r dailyactivity}
 daily<-aggregate(steps~interval,data=dat,FUN=mean,na.rm=T)
 ggplot(daily,aes(interval,steps))+geom_line()
 daily[which.max(daily$steps),]$interval
