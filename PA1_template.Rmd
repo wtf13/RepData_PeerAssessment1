@@ -6,14 +6,14 @@ output:
 ---
 
 
-#Loading and prerocessing the Data
+# Loading and preprocessing the Data
 
 ```{r load}
 dat<-read.csv("activity.csv")
 head(dat)
 ```
 
-#What is mean total number of steps taken per day?
+# What is mean total number of steps taken per day?
 ```{r mean steps}
 totalsteps<-aggregate(steps~date,data=dat,FUN=sum,na.rm=T)
 library(ggplot2)
@@ -23,14 +23,14 @@ mediansteps<-median(totalsteps$steps,na.rm=T)
 list(meansteps=meansteps,mediansteps=mediansteps)
 ```
 
-#What is the average daily activity pattern?
+# What is the average daily activity pattern?
 ```{r daily activity}
 daily<-aggregate(steps~interval,data=dat,FUN=mean,na.rm=T)
 ggplot(daily,aes(interval,steps))+geom_line()
 daily[which.max(daily$steps),]$interval
 ```
 
-#Imputing missing values
+# Imputing missing values
 ```{r missing}
 nrow(dat[!complete.cases(dat),])
 ```
@@ -48,7 +48,7 @@ list(meansteps=meansteps2,mediansteps=mediansteps2)
 ```
 The computed median total number of steps per day is now closer to the mean. 
 
-#Are there differences in activity patterns between weekdays and weekends?
+# Are there differences in activity patterns between weekdays and weekends?
 ```{r weekday}
 dat1$weekday<-ifelse(weekdays(as.Date(dat1$date)) %in% c("Sunday","Saturday"),"weekend","weekday")
 daily2<-aggregate(steps~interval+weekday,data=dat1,FUN=mean)

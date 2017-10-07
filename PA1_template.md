@@ -1,7 +1,7 @@
 # Reproducible Research: Peer Assessment 1
 
 
-#Loading and prerocessing the Data
+# Loading and preprocessing the Data
 
 
 ```r
@@ -19,7 +19,7 @@ head(dat)
 ## 6    NA 2012-10-01       25
 ```
 
-#What is mean total number of steps taken per day?
+# What is mean total number of steps taken per day?
 
 ```r
 totalsteps<-aggregate(steps~date,data=dat,FUN=sum,na.rm=T)
@@ -43,7 +43,7 @@ list(meansteps=meansteps,mediansteps=mediansteps)
 ## [1] 10765
 ```
 
-#What is the average daily activity pattern?
+# What is the average daily activity pattern?
 
 ```r
 daily<-aggregate(steps~interval,data=dat,FUN=mean,na.rm=T)
@@ -60,7 +60,7 @@ daily[which.max(daily$steps),]$interval
 ## [1] 835
 ```
 
-#Imputing missing values
+# Imputing missing values
 
 ```r
 nrow(dat[!complete.cases(dat),])
@@ -97,7 +97,7 @@ list(meansteps=meansteps2,mediansteps=mediansteps2)
 ```
 The computed median total number of steps per day is now closer to the mean. 
 
-#Are there differences in activity patterns between weekdays and weekends?
+# Are there differences in activity patterns between weekdays and weekends?
 
 ```r
 dat1$weekday<-ifelse(weekdays(as.Date(dat1$date)) %in% c("Sunday","Saturday"),"weekend","weekday")
